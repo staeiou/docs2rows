@@ -2,13 +2,13 @@
   "name": "docs2rows",
   "short_name": "docs2rows",
   "description": "Extract browser-readable documents into local SQLite, Excel, and CSV files.",
-  "start_url": "/docs2rows/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#f5f3ee",
   "theme_color": "#26352f",
   "icons": [
     {
-      "src": "/docs2rows/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }

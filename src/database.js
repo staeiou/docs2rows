@@ -159,5 +159,5 @@ function csvCell(value) {
 
 function locateSqlWasm(file) {
   const wasmFile = file.endsWith(".wasm") ? "sql-wasm.wasm" : file;
-  return new URL(wasmFile, new URL(import.meta.env.BASE_URL, window.location.origin)).href;
+  return new URL(wasmFile, new URL(import.meta.env.BASE_URL, window.location.href)).href;
 }

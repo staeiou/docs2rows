@@ -1,4 +1,4 @@
-const CACHE_NAME = "docs2rows-v1";
+const CACHE_NAME = "docs2rows-v2";
 const APP_BASE = self.registration.scope;
 const APP_ASSETS = [
   "",
