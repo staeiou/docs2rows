@@ -15,7 +15,7 @@ document.querySelector("#app").innerHTML = `
       <header class="topbar">
         <div>
           <h1>docs2rows</h1>
-          <p>Select text files to convert to one big Excel, CSV, or SQLite file. 100% local and private, everything runs offline in this browser, we never see your data.</p>
+          <p>Select text files to convert to one big Excel, CSV, or SQLite file, with one row per text file. 100% local and private, everything runs offline in this browser, we never see your data.</p>
         </div>
         <div class="actions">
           <button id="downloadSqlite" class="primary" disabled>Download SQLite</button>
