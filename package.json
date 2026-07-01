@@ -1,0 +1,22 @@
+{
+  "name": "docs2rows",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 3000",
+    "test": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Offline browser document extractor to SQLite, Excel, and CSV rows",
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "pdfjs-dist": "^5.6.205",
+    "sql.js": "^1.14.1",
+    "vite": "^8.1.0",
+    "xlsx": "^0.18.5"
+  }
+}
