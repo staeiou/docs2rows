@@ -15,7 +15,7 @@ document.querySelector("#app").innerHTML = `
       <header class="topbar">
         <div>
           <h1>docs2rows</h1>
-          <p>Build a local document table from browser-readable files. Everything runs offline in this browser.</p>
+          <p>Select text files to convert to one big Excel, CSV, or SQLite file. 100% local and private, everything runs offline in this browser, we never see your data.</p>
         </div>
         <div class="actions">
           <button id="downloadSqlite" class="primary" disabled>Download SQLite</button>
@@ -27,7 +27,7 @@ document.querySelector("#app").innerHTML = `
       <label id="dropzone" class="dropzone">
         <input id="fileInput" type="file" multiple />
         <span class="drop-title">Drop documents or ZIPs</span>
-          <span class="drop-subtitle">TXT, MRG treebank, PDF, DOCX, XLSX, RTF, HTML, CSV, JSON, ZIP, and unknown text-like extensions are processed locally. Legacy DOC files are listed as unsupported.</span>
+          <span class="drop-subtitle">TXT, MRG, PDF, DOCX, XLSX, RTF, HTML, CSV, JSON, ZIP, and unknown text-like extensions are supported. Legacy DOC files are not unsupported.</span>
       </label>
 
       <div id="statusLine" class="status-line">No files imported yet.</div>
