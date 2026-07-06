@@ -1,7 +1,10 @@
 import "./polyfills.js";
 import { createDatabase, exportCsv, exportExcel } from "./database.js";
 import { expandInputFile, extractDocument } from "./extractors.js";
+import { FAMILY_SITES } from "./family-sites.js";
 import "./styles.css";
+
+const CURRENT_SITE_NAME = "docs2rows";
 
 const state = {
   documents: [],
@@ -14,7 +17,15 @@ document.querySelector("#app").innerHTML = `
     <section class="workspace">
       <header class="topbar">
         <div>
-          <h1>docs2rows</h1>
+          <div class="title-menu">
+            <button id="titleMenuToggle" class="title-menu-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              <h1>docs2rows</h1>
+              <svg class="title-menu-caret" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M2 4l5 6 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div id="titleMenu" class="title-menu-panel" hidden></div>
+          </div>
           <p>Select text files to convert to one big Excel, CSV, or SQLite file, with one row per text file. 100% local and private, everything runs offline in this browser, we never see your data.</p>
         </div>
         <div class="actions">
@@ -103,6 +114,10 @@ const progressPanel = document.querySelector("#progressPanel");
 const progressLabel = document.querySelector("#progressLabel");
 const progressPercent = document.querySelector("#progressPercent");
 const progressFill = document.querySelector("#progressFill");
+const titleMenuToggle = document.querySelector("#titleMenuToggle");
+const titleMenu = document.querySelector("#titleMenu");
+
+initFamilyMenu();
 
 fileInput.addEventListener("change", () => importFiles([...fileInput.files]));
 dropzone.addEventListener("dragover", (event) => {
@@ -382,4 +397,40 @@ function escapeHtml(value) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function initFamilyMenu() {
+  const otherSites = FAMILY_SITES.filter((site) => site.name !== CURRENT_SITE_NAME);
+  if (!otherSites.length) {
+    titleMenuToggle.disabled = true;
+    return;
+  }
+
+  titleMenu.innerHTML = otherSites
+    .map(
+      (site) => `
+        <a class="title-menu-item" href="${escapeHtml(site.url)}">
+          <span class="title-menu-item-name">${escapeHtml(site.name)}</span>
+          <span class="title-menu-item-desc">${escapeHtml(site.description)}</span>
+        </a>`
+    )
+    .join("");
+
+  titleMenuToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setFamilyMenuOpen(titleMenuToggle.getAttribute("aria-expanded") !== "true");
+  });
+  document.addEventListener("click", (event) => {
+    if (!titleMenu.hidden && !titleMenu.contains(event.target) && event.target !== titleMenuToggle) {
+      setFamilyMenuOpen(false);
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setFamilyMenuOpen(false);
+  });
+}
+
+function setFamilyMenuOpen(open) {
+  titleMenu.hidden = !open;
+  titleMenuToggle.setAttribute("aria-expanded", String(open));
 }

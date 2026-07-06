@@ -139,6 +139,87 @@ h2 {
   justify-content: flex-end;
 }
 
+.title-menu {
+  position: relative;
+}
+
+.title-menu-toggle {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6px;
+  height: auto;
+  margin: -4px 0 -4px -6px;
+  padding: 4px 8px 4px 6px;
+}
+
+.title-menu-toggle:hover,
+.title-menu-toggle:focus-visible {
+  background: rgba(38, 53, 47, 0.08);
+}
+
+.title-menu-caret {
+  color: #5c625e;
+  flex-shrink: 0;
+  margin-top: 8px;
+  transition: transform 120ms ease;
+}
+
+.title-menu-toggle[aria-expanded="true"] .title-menu-caret {
+  transform: rotate(180deg);
+}
+
+.title-menu-toggle:disabled {
+  cursor: default;
+}
+
+.title-menu-toggle:disabled .title-menu-caret {
+  display: none;
+}
+
+.title-menu-panel {
+  background: #ffffff;
+  border: 1px solid #b9b3a7;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(31, 36, 33, 0.16);
+  left: 0;
+  margin-top: 6px;
+  min-width: 280px;
+  padding: 6px;
+  position: absolute;
+  top: 100%;
+  z-index: 20;
+}
+
+.title-menu-item {
+  border-radius: 6px;
+  color: inherit;
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+}
+
+.title-menu-item:hover,
+.title-menu-item:focus-visible {
+  background: #f5f3ee;
+}
+
+.title-menu-item-name {
+  color: #26352f;
+  display: block;
+  font-weight: 700;
+}
+
+.title-menu-item-desc {
+  color: #5c625e;
+  display: block;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
 .dropzone {
   align-items: center;
   background: #ffffff;
