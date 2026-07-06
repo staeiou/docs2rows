@@ -239,8 +239,17 @@ function decode(bytes) {
   return new TextDecoder("utf-8", { fatal: false }).decode(bytes);
 }
 
+// XML 1.0 Char production (used by the xlsx export) excludes C0 controls
+// other than tab/CR/LF and the Unicode noncharacters U+FFFE/U+FFFF. These
+// can reach extracted text via pdf.js glyph-mapping fallbacks or RTF \'XX
+// hex escapes, and the xlsx library writes them through unescaped,
+// corrupting the exported .xlsx file.
+function sanitizeXmlText(text) {
+  return text.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\ufffe\uffff]/g, "");
+}
+
 function cleanText(text) {
-  return String(text || "")
+  return sanitizeXmlText(String(text || ""))
     .replace(/\r\n?/g, "\n")
     .replace(/\u00a0/g, " ")
     .replace(/[ \t]+\n/g, "\n")
